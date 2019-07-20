@@ -4,11 +4,47 @@
 
 # 分类算法
 
+## 树模型
 
+> 可以进行多分类，但是无法指定分类的个数，这个与DBScan一样
 
-## 决策树
+### 决策树
 
+```python
+from sklearn import tree
+dtr = tree.DecisionTreeRegressor(max_depth = 3) #采用的决策树回归模型，max_depth = 3表示层数
+dtr.fit(housing.data[:, [6, 7]], housing.target) #传入数据，进行计算
+```
 
+![1563448048754](README.assets/1563448048754.png)
+
+### 随机森林
+
+```python
+#随机森林
+from sklearn.ensemble import RandomForestRegressor
+rfr = RandomForestRegressor( random_state = 42)
+rfr.fit(data_train, target_train)
+rfr.score(data_test, target_test)
+```
+
+```python
+#GridSearchCV：进行参数的自动选择
+from sklearn.model_selection import GridSearchCV
+#设置参数选择范围：min_samples_split：每个叶子节点的样本个数下限；n_estimators：随机森林中树的个数
+tree_param_grid = { 'min_samples_split': list((3,6,9)),'n_estimators':list((10,50,100))}
+#相当于是对所有的参数进行了遍历，cv=5表示5折交叉验证
+#训练集；建立模型
+#验证集：调整参数
+#测试集：测试性能
+grid = GridSearchCV(RandomForestRegressor(),param_grid=tree_param_grid, cv=5)
+grid.fit(data_train, target_train) #训练
+grid.cv_results_, grid.best_params_, grid.best_score_
+
+rfr = RandomForestRegressor( min_samples_split=3,n_estimators = 100,random_state = 42)
+rfr.fit(data_train, target_train)
+rfr.score(data_test, target_test)
+```
 
 ## 贝叶斯
 
