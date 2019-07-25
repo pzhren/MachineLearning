@@ -72,9 +72,17 @@ rfr.score(data_test, target_test)
 
 
 
+## 支持向量机SVM
+
+经典的二分类算法，多分类也可以。
+
+[关于支持向量机(SVM)的高斯核和惩罚因子C的理解（简单易懂）](https://blog.csdn.net/lin_limin/article/details/81135754)
+
+![è¿éåå¾çæè¿°](README.assets/20180720165622813.jpg)
+
+
+
 # 聚类算法
-
-
 
 ## 聚类算法
 
